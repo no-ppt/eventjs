@@ -98,6 +98,45 @@ describe( 'EventEmitter', () => {
         } );
     } );
 
+    describe( '#addListener', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRegistered" event', ( done ) => {
+                target.addListener( 'ListenerRegistered', () => {
+                    done();
+                } );
+                target.addListener( 'test', EMPTY_CALLBACK );
+            } );
+        } );
+    } );
+
+    describe( '#attachEvent', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRegistered" event', ( done ) => {
+                target.attachEvent( 'ListenerRegistered', () => {
+                    done();
+                } );
+                target.attachEvent( 'test', EMPTY_CALLBACK );
+            } );
+        } );
+    } );
+
+    describe( '#on', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRegistered" event', ( done ) => {
+                target.on( 'ListenerRegistered', () => {
+                    done();
+                } );
+                target.on( 'test', EMPTY_CALLBACK );
+            } );
+        } );
+    } );
+
     describe( '#dispatchEvent', () => {
 
         context( 'when type is not present', () => {
@@ -142,7 +181,62 @@ describe( 'EventEmitter', () => {
             } );
         } );
 
+        context( 'when listening to the wildcard', () => {
+            it( 'should dispatch the even to all listeners that listening to the wildcard',
+                ( done ) => {
+                    target.addEventListener( '*', ( event, a, b, c ) => {
+                        event.target.should.equal( target );
+                        event.type.should.equal( 'test' );
+                        event.arguments.length.should.equal( 3 );
+                        event.timestamp.should.be.ok();
+                        a.should.equal( 1 );
+                        b.should.equal( 2 );
+                        c.should.equal( 3 );
+                        done();
+                    } );
+                    target.dispatchEvent( 'test', 1, 2, 3 );
+                } );
+        } );
+    } );
 
+    describe( '#fireEvent', () => {
+
+        context( 'when parameter is present', () => {
+
+            it( 'should dispatch an event with parameters', ( done ) => {
+                target.addEventListener( 'test', ( event, a, b, c ) => {
+                    event.target.should.equal( target );
+                    event.type.should.equal( 'test' );
+                    event.arguments.length.should.equal( 3 );
+                    event.timestamp.should.be.ok();
+                    a.should.equal( 1 );
+                    b.should.equal( 2 );
+                    c.should.equal( 3 );
+                    done();
+                } );
+                target.fireEvent( 'test', 1, 2, 3 );
+            } );
+        } );
+    } );
+
+    describe( '#emit', () => {
+
+        context( 'when parameter is present', () => {
+
+            it( 'should dispatch an event with parameters', ( done ) => {
+                target.addEventListener( 'test', ( event, a, b, c ) => {
+                    event.target.should.equal( target );
+                    event.type.should.equal( 'test' );
+                    event.arguments.length.should.equal( 3 );
+                    event.timestamp.should.be.ok();
+                    a.should.equal( 1 );
+                    b.should.equal( 2 );
+                    c.should.equal( 3 );
+                    done();
+                } );
+                target.emit( 'test', 1, 2, 3 );
+            } );
+        } );
     } );
 
     describe( '#listenerCount', () => {
@@ -177,10 +271,14 @@ describe( 'EventEmitter', () => {
             } );
 
             it( 'should decrease listener count', () => {
-                let before = target.listenerCount( 'test' );
+                let before   = target.listenerCount( 'test' );
+                let callback = function () {
+                };
                 target.addEventListener( 'test', EMPTY_CALLBACK );
                 target.listenerCount( 'test' ).should.equal( before + 1 );
+                target.addEventListener( 'test', callback );
                 target.removeEventListener( 'test', EMPTY_CALLBACK );
+                target.removeEventListener( 'test', callback );
                 target.listenerCount( 'test' ).should.equal( before );
             } );
         } );
@@ -193,7 +291,7 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
         } );
 
         context( 'when type is not a string', () => {
@@ -204,7 +302,7 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
         } );
 
         context( 'when type is an empty string', () => {
@@ -215,7 +313,7 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
         } );
 
         context( 'when listener is not present', () => {
@@ -226,7 +324,7 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
         } );
 
         context( 'when listener is not a function', () => {
@@ -237,7 +335,65 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
+        } );
+
+        context( 'when no listener listening to the type.', () => {
+
+            it( 'should not throw an error.', () => {
+                target.removeEventListener( 'empty', EMPTY_CALLBACK );
+            } );
+        } );
+
+        context( 'when the specified listener is not registered.', () => {
+
+            it( 'should not throw an error.', () => {
+                target.addEventListener( 'test', EMPTY_CALLBACK );
+                target.removeEventListener( 'test', function () {
+                } );
+            } );
+        } );
+    } );
+
+    describe( '#removeListener', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRemoved" event', ( done ) => {
+                target.addEventListener( 'ListenerRemoved', () => {
+                    done();
+                } );
+                target.addEventListener( 'test', EMPTY_CALLBACK );
+                target.removeListener( 'test', EMPTY_CALLBACK );
+            } );
+        } );
+    } );
+
+    describe( '#detachEvent', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRemoved" event', ( done ) => {
+                target.addEventListener( 'ListenerRemoved', () => {
+                    done();
+                } );
+                target.addEventListener( 'test', EMPTY_CALLBACK );
+                target.detachEvent( 'test', EMPTY_CALLBACK );
+            } );
+        } );
+    } );
+
+    describe( '#off', () => {
+
+        context( 'when type and listener is legal', () => {
+
+            it( 'should emit "ListenerRemoved" event', ( done ) => {
+                target.addEventListener( 'ListenerRemoved', () => {
+                    done();
+                } );
+                target.addEventListener( 'test', EMPTY_CALLBACK );
+                target.off( 'test', EMPTY_CALLBACK );
+            } );
         } );
     } );
 
@@ -284,7 +440,14 @@ describe( 'EventEmitter', () => {
                 } catch ( e ) {
                     done();
                 }
-            } )
+            } );
+        } );
+
+        context( 'when no listener listening to the type.', () => {
+
+            it( 'should not throw an error.', () => {
+                target.removeAllListeners( 'empty', EMPTY_CALLBACK );
+            } );
         } );
     } );
 } );

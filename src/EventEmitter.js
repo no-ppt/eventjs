@@ -89,7 +89,7 @@ export default class EventEmitter {
         this._checkEventType( type );
         this._checkEventListener( listener );
 
-        // Return directly if no listener registered to the specified event type..
+        // Return directly if no listener listening to the specified event type.
         if ( !this._events.has( type ) ) {
             return this;
         }
@@ -149,7 +149,7 @@ export default class EventEmitter {
         // Check parameter legality.
         this._checkEventType( type );
 
-        // Return directly if no listener registered to the specified event type.
+        // Return directly if no listener listening to the specified event type.
         if ( !this._events.has( type ) ) {
             return this;
         }

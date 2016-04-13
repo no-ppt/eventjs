@@ -4,6 +4,8 @@ Event.js is an improved JavaScript event-driven framework running on Node.js and
 
 [![Join the chat at https://gitter.im/no-ppt/eventjs](https://badges.gitter.im/no-ppt/eventjs.svg)](https://gitter.im/no-ppt/eventjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Build Status](https://travis-ci.org/no-ppt/eventjs.svg?branch=master)](https://travis-ci.org/no-ppt/eventjs)
+[![Coverage Status](https://coveralls.io/repos/github/no-ppt/eventjs/badge.svg?branch=master)](https://coveralls.io/github/no-ppt/eventjs?branch=master)
 
 [![Dependency Status](https://david-dm.org/no-ppt/eventjs.svg)](https://david-dm.org/no-ppt/eventjs)
 [![devDependency Status](https://david-dm.org/no-ppt/eventjs/dev-status.svg)](https://david-dm.org/no-ppt/eventjs#info=devDependencies)
@@ -83,6 +85,11 @@ Run the unit test with NPM:
 
 ```
 $ npm test
+```
+
+Generate the coverage report:
+```
+$ npm run coverage
 ```
 
 ## Contributing
