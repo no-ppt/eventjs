@@ -4,7 +4,6 @@ Event.js is an improved JavaScript event-driven framework running on Node.js and
 
 [![Join the chat at https://gitter.im/no-ppt/eventjs](https://badges.gitter.im/no-ppt/eventjs.svg)](https://gitter.im/no-ppt/eventjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Build Status](https://travis-ci.org/no-ppt/eventjs.svg?branch=master)](https://travis-ci.org/no-ppt/eventjs)
 
 [![Dependency Status](https://david-dm.org/no-ppt/eventjs.svg)](https://david-dm.org/no-ppt/eventjs)
 [![devDependency Status](https://david-dm.org/no-ppt/eventjs/dev-status.svg)](https://david-dm.org/no-ppt/eventjs#info=devDependencies)
