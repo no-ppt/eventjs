@@ -1,0 +1,19 @@
+# Mac OSX
+*~
+.DS_Store
+
+# JetBrains project file.
+.idea
+*.iml
+
+# Eclipse project file.
+.project
+.settings
+
+# Node.js modules.
+node_modules
+npm-debug.log
+
+# Compile temporary directory.
+.tmp
+coverage
