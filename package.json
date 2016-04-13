@@ -16,9 +16,7 @@
     "build": "npm run compile && npm run combine && npm run uglify",
     "postbuild": "npm run clean",
     "test": "mocha --compilers js:babel-register --full-trace --check-leaks",
-    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcovonly --report html node_modules/mocha/bin/_mocha",
-    "precoveralls": "npm run coverage",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report html node_modules/mocha/bin/_mocha"
   },
   "contributors": [
     {
