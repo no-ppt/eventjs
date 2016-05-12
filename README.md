@@ -15,15 +15,54 @@ Event.js is an improved JavaScript event-driven framework running on Node.js and
 install with npm:
 
 ```Shell
-$ npm install --save noppt/eventjs
+$ npm install --save no-ppt/eventjs
 ```
 
 ## Getting Started
 
+### Using event emitter separately
+
 In Node.js:
 
 ```JavaScript
-var EventEmitter = require( 'eventjs' ).default.EventEmitter;
+var EventEmitter = require('eventjs').EventEmitter;
+
+// Create event emitter.
+var emitter = new EventEmitter();
+
+// Listen to something you needed.
+emitter.addEventListener( 'change', function( event ) {
+    // TODO: Writting business code here...
+} );
+
+// Dispatch event.
+emitter.dispatchEvent( 'change' );
+```
+
+In browser with require.js:
+
+```JavaScript
+define( [ 'eventjs' ], function( eventjs ) {
+
+    // Create event emitter.
+    var emitter = new eventjs.EventEmitter();
+
+    // Listen to something you needed.
+    emitter.addEventListener( 'change', function( event ) {
+        // TODO: Writting business code here...
+    } );
+
+    // Dispatch event.
+    emitter.dispatchEvent( 'change' );
+} );
+```
+
+### Extends the EventEmitter
+
+In Node.js:
+
+```JavaScript
+var EventEmitter = require( 'eventjs' ).EventEmitter;
 
 /**
  * Define the business class and extends EventEmitter.
@@ -50,7 +89,7 @@ In browser with require.js:
 ```JavaScript
 define( [ 'eventjs' ], function( eventjs ) {
 
-    var EventEmitter = eventjs.default.EventEmitter;
+    var EventEmitter = eventjs.EventEmitter;
 
     /**
      * Define the business class and extends EventEmitter.

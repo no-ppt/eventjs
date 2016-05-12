@@ -12,10 +12,10 @@ const EVENT_WILDCARD = '*';
  * 'ListenerRemoved' when a listener is removed.
  *
  * @author hermit
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
-export default class EventEmitter {
+export class EventEmitter {
 
     /**
      * Construct a event emitter object.

@@ -1,5 +1,5 @@
 import should       from 'should';
-import EventEmitter from '../src/EventEmitter';
+import {EventEmitter} from '../src/EventEmitter';
 
 const EMPTY_CALLBACK = function () {
 };
