@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EventJS Examples</title>
+</head>
+<body>
+
+<script type="text/javascript" src="../../node_modules/requirejs/require.js"></script>
+<script type="text/javascript">
+  requirejs.config( {
+    baseUrl: '.',
+    paths  : {
+      eventjs: '../../dist/event.min'
+    }
+  } );
+  require( [ 'eventjs' ], function ( eventjs ) {
+
+    var EventEmitter = eventjs.EventEmitter;
+
+    /**
+     * Define the business class and extends EventEmitter.
+     */
+    var Endpoint = function () {
+      EventEmitter.call( this );
+    };
+
+    Endpoint.prototype = Object.create( EventEmitter.prototype );
+
+    // Create the instance of Endpoint.
+    var instance = new Endpoint();
+
+    // Listen to event 'test'.
+    instance.addEventListener( 'test', function () {
+      // TODO: Writing business code here...
+    } );
+
+    // Dispatch 'test' event.
+    instance.dispatchEvent( 'test' );
+  } );
+</script>
+</body>
+</html>
