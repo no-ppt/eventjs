@@ -1,6 +1,6 @@
 {
   "name": "eventjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Event.js is an improved event-driven framework that works in both Node.js and the browser.",
   "keywords": [
     "event",
@@ -34,14 +34,16 @@
     "url": "https://github.com/no-ppt/eventjs.git"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-umd": "^6.6.5",
+    "babel-cli": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
-    "babel-register": "^6.7.2",
+    "babel-register": "^6.8.0",
     "coveralls": "^2.11.9",
     "isparta": "^4.0.0",
     "mocha": "^2.4.5",
     "requirejs": "^2.2.0",
-    "should": "^8.3.0"
+    "should": "^8.3.0",
+    "webpack": "^1.13.0"
   },
   "bugs": {
     "url": "https://github.com/no-ppt/eventjs/issues"
