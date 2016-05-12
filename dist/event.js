@@ -55,54 +55,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	  } else if (typeof exports !== "undefined") {
-	    factory(exports, require('./EventEmitter'));
-	  } else {
-	    var mod = {
-	      exports: {}
-	    };
-	    factory(mod.exports, global.EventEmitter);
-	    global.EventJS = mod.exports;
-	  }
-	})(this, function (exports, _EventEmitter) {
-	  'use strict';
-
-	  Object.defineProperty(exports, "__esModule", {
-	    value: true
-	  });
-
-	  var _EventEmitter2 = _interopRequireDefault(_EventEmitter);
-
-	  function _interopRequireDefault(obj) {
-	    return obj && obj.__esModule ? obj : {
-	      default: obj
-	    };
-	  }
-
-	  /**
-	   * Define the EventJS library.
-	   *
-	   * @type {object}
-	   */
-	  var EventJS = {
-	    version: '1.0.1',
-	    dependencies: {}
-	  };
-
-	  // Register modules.
-	  EventJS.EventEmitter = _EventEmitter2.default;
-
-	  // Export EventJS library.
-	  exports.default = EventJS;
-	});
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
 	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
@@ -159,11 +111,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * 'ListenerRemoved' when a listener is removed.
 	     *
 	     * @author hermit
-	     * @version 1.0.0
+	     * @version 1.1.0
 	     * @since 1.0.0
 	     */
 
-	    var EventEmitter = function () {
+	    var EventEmitter = exports.EventEmitter = function () {
 
 	        /**
 	         * Construct a event emitter object.
@@ -208,21 +160,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Return current context.
 	                return this;
 	            }
+
+	            /**
+	             * Alias to {@code #addEventListener}.
+	             */
+
 	        }, {
 	            key: 'addListener',
 	            value: function addListener(type, listener) {
 	                return this.addEventListener(type, listener);
 	            }
+
+	            /**
+	             * Alias to {@code #addEventListener}.
+	             */
+
 	        }, {
 	            key: 'attachEvent',
 	            value: function attachEvent(type, listener) {
 	                return this.addEventListener(type, listener);
 	            }
+
+	            /**
+	             * Alias to {@code #addEventListener}.
+	             */
+
 	        }, {
 	            key: 'on',
 	            value: function on(type, listener) {
 	                return this.addEventListener(type, listener);
 	            }
+
+	            /**
+	             * Removes the event listener previously registered with {@code #addEventListener()}.
+	             *
+	             * @param type      A string representing the event type to listen for.
+	             * @param listener  The function to remove from the target.
+	             *
+	             * @returns {EventEmitter}
+	             */
+
 	        }, {
 	            key: 'removeEventListener',
 	            value: function removeEventListener(type, listener) {
@@ -231,7 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this._checkEventType(type);
 	                this._checkEventListener(listener);
 
-	                // Return directly if no listener registered to the specified event type..
+	                // Return directly if no listener listening to the specified event type.
 	                if (!this._events.has(type)) {
 	                    return this;
 	                }
@@ -257,21 +234,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Return current context.
 	                return this;
 	            }
+
+	            /**
+	             * Alias to {@code #removeEventListener()}.
+	             */
+
 	        }, {
 	            key: 'removeListener',
 	            value: function removeListener(type, listener) {
 	                this.removeEventListener(type, listener);
 	            }
+
+	            /**
+	             * Alias to {@code #removeEventListener()}.
+	             */
+
 	        }, {
 	            key: 'detachEvent',
 	            value: function detachEvent(type, listener) {
 	                this.removeEventListener(type, listener);
 	            }
+
+	            /**
+	             * Alias to {@code #removeEventListener()}.
+	             */
+
 	        }, {
 	            key: 'off',
 	            value: function off(type, listener) {
 	                this.removeEventListener(type, listener);
 	            }
+
+	            /**
+	             * Clear all listener(s) which listening for the specified event type.
+	             *
+	             * @param type      A string representing the event type to listen for.
+	             *
+	             * @returns {EventEmitter}
+	             */
+
 	        }, {
 	            key: 'removeAllListeners',
 	            value: function removeAllListeners(type) {
@@ -279,7 +280,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Check parameter legality.
 	                this._checkEventType(type);
 
-	                // Return directly if no listener registered to the specified event type.
+	                // Return directly if no listener listening to the specified event type.
 	                if (!this._events.has(type)) {
 	                    return this;
 	                }
@@ -294,6 +295,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // Return current context.
 	                return this;
 	            }
+
+	            /**
+	             * Dispatches an event at the specified EventTarget, invoking the affected listeners in the
+	             * appropriate order.
+	             * The wildcard listener will dispatched later than the concrete listener.
+	             *
+	             * @param type      A string representing the event type to dispatch to.
+	             * @param params    Parameters for the event listeners.
+	             *
+	             * @returns {EventEmitter}  Current object.
+	             */
+
 	        }, {
 	            key: 'dispatchEvent',
 	            value: function dispatchEvent(type) {
@@ -322,6 +335,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                return this;
 	            }
+
+	            /**
+	             * Alias to {@code #dispatchEvent()}.
+	             */
+
 	        }, {
 	            key: 'fireEvent',
 	            value: function fireEvent(type) {
@@ -331,6 +349,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                return this.dispatchEvent.apply(this, [type].concat(params));
 	            }
+
+	            /**
+	             * Alias to {@code #dispatchEvent()}.
+	             */
+
 	        }, {
 	            key: 'emit',
 	            value: function emit(type) {
@@ -340,6 +363,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                return this.dispatchEvent.apply(this, [type].concat(params));
 	            }
+
+	            /**
+	             * Returns the number of listeners listening to the specified event type.
+	             *
+	             * @param type          A string representing the event type to get listener count.
+	             *
+	             * @returns {number}    Current object.
+	             */
+
 	        }, {
 	            key: 'listenerCount',
 	            value: function listenerCount(type) {
@@ -378,8 +410,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        return EventEmitter;
 	    }();
-
-	    exports.default = EventEmitter;
 	});
 
 /***/ }
