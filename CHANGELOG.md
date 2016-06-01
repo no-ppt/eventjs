@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 - 2016.05.12
+
+- Export with ES 6 module.
+- Remove global requirements.
+- Rebuild with webpack and support Node.js and Require.js
+
+
 ## 1.0.0 - 2016.04.13
 
 - Add `EventDriven` class to implementation event-driven API.
